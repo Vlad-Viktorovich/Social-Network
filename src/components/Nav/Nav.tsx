@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './Nav.module.css'
+import { NavLink } from 'react-router-dom';
 
 type    NavProps = {
 
@@ -9,13 +10,15 @@ export const Nav = () =>{
     return(
         <nav className={classes.nav}>
             <div className={classes.item}>
-                <a href = "/profile">Profile</a>
+                <NavLink to = "/profile" activeClassName =
+                    {classes.activeLink}>Profile</NavLink>
             </div>
             <div className={classes.item}>
-                <a href = "/dialogs">Messages</a>
+                <NavLink to = "/dialogs" activeClassName =
+                    {classes.activeLink}>Messages</NavLink>
             </div>
             <div className={classes.item}>
-                <a>News</a>
+                <>News</>
             </div>
             <div className={classes.item}>
                 <a>Music</a>

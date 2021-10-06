@@ -7,15 +7,17 @@ type MyPostsProps = {}
 export const MyPost = (props: MyPostsProps) => {
 
     return (
-        <div className={classes.posts}>
-            My posts
+        <div className={classes.postsBlock}>
+            <h3>My posts</h3>
             <div className={classes.item}>
-                <textarea></textarea>
-                <button>Add post</button>
+                <div><textarea></textarea></div>
+                <div>
+                    <button>Add post</button>
+                </div>
             </div>
             <div className={classes.posts}>
-                <Post message ='Hi,how are you?'/>
-                <Post message = "It's my first post"/>
+                <Post message="Hi,how are you?"/>
+                <Post message="It's my first post"/>
 
             </div>
         </div>

@@ -3,6 +3,7 @@ import classes from './Post.module.css'
 
 type PostProps = {
     message:string
+    likesCount:number
 }
 
 export const Post = (props: PostProps) => {

@@ -1,4 +1,5 @@
 import React from 'react';
+import {renderTree} from '../renderTree';
 
 export type MessageType = {
     message: string
@@ -16,25 +17,27 @@ export type PostsType = {
     likesCount: number
 }
 
-export type ProfilePageType={
-    posts:Array<PostsType>
+export type ProfilePageType = {
+    posts: Array<PostsType>
+    messageForNewPost:string
 }
 
-export type DialogsPageType={
-    dialogs:Array<DialogsType>
-    message:Array<MessageType>
+export type DialogsPageType = {
+    dialogs: Array<DialogsType>
+    message: Array<MessageType>
 }
 
-type SideBarType={}
+type SideBarType = {}
 
-export type RootStateType={
-    profilePage:ProfilePageType
-    dialogsPage:DialogsPageType
-    sideBar:SideBarType
+export type RootStateType = {
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPageType
+    sideBar: SideBarType
 }
 
-export let state:RootStateType = {
+export let state: RootStateType = {
     profilePage: {
+        messageForNewPost:"",
         posts: [
             {id: 1, message: 'Hi,how are you?', likesCount: 12},
             {id: 2, message: 'It\'s my first post', likesCount: 11}
@@ -57,5 +60,22 @@ export let state:RootStateType = {
             {id: 5, message: 'Yo'},
         ]
     },
-    sideBar:{}
+    sideBar: {}
 }
+
+export const addPost = (postText: string) => {
+    const newPost: PostsType = {
+        id: new Date().getTime(),
+        message: postText,
+        likesCount: 0
+
+    }
+
+    state.profilePage.posts.push(newPost)
+
+    renderTree(state)
+}
+    export const changeNewText =(newText:string)=>{
+        state.profilePage.messageForNewPost=newText
+        renderTree(state)
+    }

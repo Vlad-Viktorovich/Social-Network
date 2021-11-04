@@ -1,12 +1,11 @@
 import React from 'react';
 import classes from './Post.module.css'
 
-type PostProps = {
-    message:string
-    likesCount:number
+type PostPropsType = {
+    message: string,
+    likesCount: number
 }
-
-export const Post = (props: PostProps) => {
+export const Post = (props: PostPropsType) => {
     return (
         <div className={classes.item}>
             <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/Yaponchik_mishka.jpg"/>

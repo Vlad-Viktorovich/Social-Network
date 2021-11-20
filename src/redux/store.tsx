@@ -2,19 +2,7 @@ import {profileReduser} from './profile-reducer';
 import {dialogsReduser} from './dialogs-reducer';
 import {sideBarReduser} from './sidebar-reducer';
 
-export type MessageType = {
-    message: string
-    id: number
-}
-export type DialogsType = {
-    name: string
-    id: number
-}
-export type PostsType = {
-    message: string
-    id: number
-    likesCount: number
-}
+
 export type ProfilePageType = {
     posts: Array<PostsType>
     messageForNewPost: string
@@ -39,6 +27,22 @@ export type StoreType = {
     getState: () => RootStateType
     dispatch: (action: ActionTypes) => void
 }
+export type MessageType = {
+    message: string
+    id: number
+}
+export type DialogsType = {
+    name: string
+    id: number
+}
+export type PostsType = {
+    message: string
+    id: number
+    likesCount: number
+}
+
+
+
 export type ActionTypes =
     ReturnType<typeof addPostAC>
     | ReturnType<typeof changeNewTextAC>

@@ -1,4 +1,4 @@
-import {ActionTypes, PostsType, ProfilePageType} from './state';
+import {ActionTypes, PostsType, ProfilePageType} from './store';
 
 
 

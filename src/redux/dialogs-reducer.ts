@@ -1,4 +1,4 @@
-import {ActionTypes, DialogsPageType, PostsType} from './state';
+import {ActionTypes, DialogsPageType, PostsType} from './store';
 
 const updateNewMessageBodyAC = (body: string) => {
     return {

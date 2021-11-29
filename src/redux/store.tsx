@@ -1,18 +1,20 @@
-import {profileReduser} from './profile-reducer';
-import {dialogsReduser} from './dialogs-reducer';
-import {sideBarReduser} from './sidebar-reducer';
+import {PostsType, ProfilePageType, profileReducer} from './profile-reducer';
+import {DialogsPageType, dialogsReducer} from './dialogs-reducer';
+import {sideBarReducer, SideBarType} from './sidebar-reducer';
 
 
-export type ProfilePageType = {
-    posts: Array<PostsType>
-    messageForNewPost: string
-}
-export type DialogsPageType = {
-    dialogs: Array<DialogsType>
-    message: Array<MessageType>
-    newMessageBody: string
-}
-export type SideBarType = {}
+
+
+// export type ProfilePageType = {
+//     posts: Array<PostsType>
+//     messageForNewPost: string
+// }
+// export type DialogsPageType = {
+//     dialogs: Array<DialogsType>
+//     message: Array<MessageType>
+//     newMessageBody: string
+// }
+// export type SideBarType = {}
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
@@ -27,20 +29,20 @@ export type StoreType = {
     getState: () => RootStateType
     dispatch: (action: ActionTypes) => void
 }
-export type MessageType = {
-    message: string
-    id: number
-}
-export type DialogsType = {
-    name: string
-    id: number
-}
-export type PostsType = {
-    message: string
-    id: number
-    likesCount: number
-}
-
+// export type MessageType = {
+//     message: string
+//     id: number
+// }
+// export type DialogsType = {
+//     name: string
+//     id: number
+// }
+// export type PostsType = {
+//     message: string
+//     id: number
+//     likesCount: number
+// }
+//
 
 
 export type ActionTypes =
@@ -127,9 +129,9 @@ export const store: StoreType = {
     },
     dispatch(action) {
 
-        this._state.profilePage = profileReduser(this._state.profilePage, action)
-        this._state.dialogsPage = dialogsReduser(this._state.dialogsPage, action)
-        this._state.sideBar = sideBarReduser(this._state.sideBar, action)
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.sideBar = sideBarReducer(this._state.sideBar, action)
 
         this._onChange()
 

@@ -4,15 +4,18 @@ import {Header} from './components/Header/Header';
 import {Nav} from './components/Nav/Nav';
 import {Profile} from './components/Profile/Profile';
 import {Dialogs} from './components/Dialogs/Dialogs';
-import {BrowserRouter, Route} from 'react-router-dom';
-import {ActionTypes, RootStateType, StoreType} from './redux/store';
+import {Route} from 'react-router-dom';
+import {RootStoreType} from './redux/redux-store';
+import {Store} from 'redux';
+
 
 type AppPropsType = {
-    store:StoreType
+    store: Store<RootStoreType, any>
 }
 
 const App = (props: AppPropsType) => {
-    const state=props.store.getState()
+    const state = props.store.getState()
+    console.log('Companent render')
     return (
         <div className={'app-wrapper'}>
             <Header title="ok"/>
@@ -30,9 +33,7 @@ const App = (props: AppPropsType) => {
                     <Profile
                         store={props.store}
                         profilePage={state.profilePage}
-                        addPost={props.store.addPost.bind(props.store)}
                         messageForNewPost={state.profilePage.messageForNewPost}
-                        changeNewTextCallback={props.store.changeNewText.bind(props.store)}
                         dispatch={props.store.dispatch.bind(props.store)}
                     />}
                 />

@@ -1,32 +1,32 @@
-import React, {ChangeEvent, MouseEvent} from 'react';
+import React, {ChangeEvent} from 'react';
 import classes from './Dialogs.module.css';
 import {DialogItem} from './DialogItem/DialogsItem';
 import {Message} from './Message/Message';
-import {ActionTypes, sendMessageAC, updateNewMessageBodyAC} from '../../redux/store';
-import {DialogsType, MessageType} from '../../redux/dialogs-reducer';
+import {DialogsPageType} from '../../redux/dialogs-reducer';
 
 type DialogsPropsType = {
-    dialogs: Array<DialogsType>
-    message: Array<MessageType>
-    newMessageBody: string
-    dispatch:(action:ActionTypes)=>void
+    dialogsPage: DialogsPageType
+    updateNewMessageBody:(body:string)=>void
+    sendMessage:()=>void
+
 
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
 
+    let state = props.dialogsPage
 
-    let dialogsElements = props.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
-    let messagesElement = props.message.map(m => <Message message={m.message}/>)
-    let newMessagesBody = props.newMessageBody
+    let dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
+    let messagesElement = state.message.map(m => <Message message={m.message}/>)
+    let newMessagesBody = state.newMessageBody
 
-    let onSendMessageClickHandler = (event:MouseEvent<HTMLButtonElement>) => {
-        props.dispatch(sendMessageAC())
+    let onSendMessageClickHandler = () => {
+        props.sendMessage()
     }
 
     let onNewMessageChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-       let body = event.currentTarget.value
-        props.dispatch(updateNewMessageBodyAC(body))
+        let body = event.currentTarget.value
+        props.updateNewMessageBody(body)
     }
 
     return (

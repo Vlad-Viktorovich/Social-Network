@@ -6,8 +6,9 @@ import {PostsType} from '../../../redux/profile-reducer';
 
 type MyPostsPropsType = {
     posts: PostsType[]
-    messageForNewPost:string
-    dispatch:(action:ActionTypes)=>void
+    messageForNewPost: string
+    newTextChangeHandler: (value: string) => void
+    addPost: () => void
 }
 export const MyPost = (props: MyPostsPropsType) => {
     let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
@@ -15,20 +16,22 @@ export const MyPost = (props: MyPostsPropsType) => {
     let postMessageRef = React.createRef<HTMLTextAreaElement>()
 
     const addPost = () => {
-        props.dispatch(addPostAC(props.messageForNewPost))
-     }
-const newTextChangeHandler=(event: ChangeEvent<HTMLTextAreaElement>)=>{
-    props.dispatch(changeNewTextAC(event.currentTarget.value))
-}
+        props.addPost()
+    }
+    const onPostChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        let value = event.currentTarget.value
+        props.newTextChangeHandler(value)
+    }
 
     return (
         <div className={classes.postsBlock}>
             <h3>My posts</h3>
             <div className={classes.item}>
-                <div><textarea
-                    value={props.messageForNewPost}
-                    onChange={newTextChangeHandler}
-                />
+                <div>
+                    <textarea
+                        value={props.messageForNewPost}
+                        onChange={onPostChange}
+                    />
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>

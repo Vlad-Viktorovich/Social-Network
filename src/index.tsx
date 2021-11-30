@@ -13,7 +13,7 @@ export const renderTree = () => {
         </BrowserRouter>, document.getElementById('root')
     );
 }
-
+ 
 store.subscribe(renderTree)
 renderTree()
 

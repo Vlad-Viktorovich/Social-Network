@@ -34,18 +34,23 @@ const changeNewTextAC = (newText: string) => {
 export const profileReducer = (state = initialState, action: ActionTypes): ProfilePageType => {
 
     switch (action.type) {
-        case 'ADD-POST':
+        case 'ADD-POST': {
             let newPost: PostsType = {
                 id: new Date().getTime(),
                 message: state.messageForNewPost,
                 likesCount: 0
             }
-            state.posts.push(newPost)
-            state.messageForNewPost = ''
-            return state
-        case 'CHANGE_NEW_TEXT':
-            state.messageForNewPost = action.newText
-            return state
+            let stateCopy = {...state}
+            stateCopy.posts = [...state.posts]
+            stateCopy.posts.push(newPost)
+            stateCopy.messageForNewPost = ''
+            return stateCopy
+        }
+        case 'CHANGE_NEW_TEXT': {
+            let stateCopy ={...state}
+                stateCopy.messageForNewPost = action.newText
+            return stateCopy
+        }
         default:
             return state
     }

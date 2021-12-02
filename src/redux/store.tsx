@@ -51,10 +51,9 @@ export type ActionTypes =
     | ReturnType<typeof updateNewMessageBodyAC>
     | ReturnType<typeof sendMessageAC>
 
-export const addPostAC = (postText: string) => {
+export const addPostAC = () => {
     return {
         type: 'ADD-POST',
-        postText: postText
     } as const
 }
 export const changeNewTextAC = (newText: string) => {

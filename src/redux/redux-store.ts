@@ -10,5 +10,7 @@ let reducers = combineReducers(
         sidebar: sideBarReducer
     }
 )
+
+
 export type RootStoreType = ReturnType<typeof reducers>
 export let store: Store<RootStoreType, any> = createStore(reducers)

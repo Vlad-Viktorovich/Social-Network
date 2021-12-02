@@ -37,7 +37,7 @@ export const profileReducer = (state = initialState, action: ActionTypes): Profi
         case 'ADD-POST':
             let newPost: PostsType = {
                 id: new Date().getTime(),
-                message: action.postText,
+                message: state.messageForNewPost,
                 likesCount: 0
             }
             state.posts.push(newPost)

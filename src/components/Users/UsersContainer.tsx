@@ -16,7 +16,7 @@ type MapDispatchToProps={
 
 }
 
-export type UsersPropsType = MapStatePropsType | MapDispatchToProps
+export type UsersPropsType = MapStatePropsType & MapDispatchToProps
 
 let mapStateToProps = (state: RootStoreType):MapStatePropsType => {
     return {

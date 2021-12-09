@@ -1,20 +1,22 @@
 import React from 'react';
 import classes from './Nav.module.css'
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
-type    NavProps = {
+type    NavProps = {}
 
-}
-
-export const Nav = () =>{
-    return(
+export const Nav = () => {
+    return (
         <nav className={classes.nav}>
             <div className={classes.item}>
-                <NavLink to = "/profile" activeClassName =
+                <NavLink to="/profile" activeClassName=
                     {classes.activeLink}>Profile</NavLink>
             </div>
             <div className={classes.item}>
-                <NavLink to = "/dialogs" activeClassName =
+                <NavLink to="/users" activeClassName=
+                    {classes.activeLink}>Users</NavLink>
+            </div>
+            <div className={classes.item}>
+                <NavLink to="/dialogs" activeClassName=
                     {classes.activeLink}>Messages</NavLink>
             </div>
             <div className={classes.item}>

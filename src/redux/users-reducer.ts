@@ -4,8 +4,8 @@ export type InitialStateType = {
 }
 export type UsersType = {
     id: number
-    photoUrl: string
-    fullname: string
+    photos: {small:string | null, large:string | null}
+    name: string
     followed: boolean
     status: string
     location: {
@@ -28,7 +28,7 @@ let initialState: InitialStateType = {
 
 }
 
-export const usersReducer = (state = initialState, action: UsersActionTypes):InitialStateType => {
+export const usersReducer = (state = initialState, action: UsersActionTypes): InitialStateType => {
 
     switch (action.type) {
         case FOLLOW:
@@ -62,6 +62,6 @@ export const usersReducer = (state = initialState, action: UsersActionTypes):Ini
 
 }
 
-export const followAC = (userId: number) => ({type: FOLLOW, userId}as const)
-export const unfollowAC = (userId: number) => ({type: UNFOLLOW, userId}as const)
-export const setUsersAC = (users:Array<UsersType>) => ({type: SET_USERS, users}as const)
+export const followAC = (userId: number) => ({type: FOLLOW, userId} as const)
+export const unfollowAC = (userId: number) => ({type: UNFOLLOW, userId} as const)
+export const setUsersAC = (users: Array<UsersType>) => ({type: SET_USERS, users} as const)

@@ -1,8 +1,6 @@
-import {PostsType, ProfilePageType, profileReducer} from './profile-reducer';
+import {PostsType, ProfilePageType, profileReducer, setUserProfile} from './profile-reducer';
 import {DialogsPageType, dialogsReducer} from './dialogs-reducer';
 import {sideBarReducer, SideBarType} from './sidebar-reducer';
-
-
 
 
 // export type ProfilePageType = {
@@ -50,6 +48,7 @@ export type ActionTypes =
     | ReturnType<typeof changeNewTextAC>
     | ReturnType<typeof updateNewMessageBodyAC>
     | ReturnType<typeof sendMessageAC>
+    | ReturnType<typeof setUserProfile>
 
 export const addPostAC = () => {
     return {
@@ -78,6 +77,7 @@ export const store: StoreType = {
     _state: {
         profilePage: {
             messageForNewPost: '',
+            profile: null,
             posts: [
                 {id: 1, message: 'Hi,how are you?', likesCount: 12},
                 {id: 2, message: 'It\'s my first post', likesCount: 11}

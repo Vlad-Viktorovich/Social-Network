@@ -6,7 +6,7 @@ import {Route, Switch} from 'react-router-dom';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
-
+import HeaderContainer from './components/Header/HeaderContainer';
 
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
     console.log('Companent render')
     return (
         <div className={'app-wrapper'}>
-            <Header title="ok"/>
+            <HeaderContainer/>
             <Nav/>
             <div className={'app-wrapper-content'}>
                 <Switch>

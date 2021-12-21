@@ -7,4 +7,22 @@
     width: 20px;
 }
 
+.loginBlock {
+    float: right;
+    padding: 14px;
+    font-size: 18px;
+}
 
+.loginBlock a {
+    text-decoration: none;
+    color: #33393D;
+}
+
+.loginBlock a:hover {
+    color: white;
+    transition: 0.2s linear;
+}
+
+.loginBlock a.active {
+    color: black;
+}

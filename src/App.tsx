@@ -11,7 +11,7 @@ import HeaderContainer from './components/Header/HeaderContainer';
 
 const App = () => {
 
-    console.log('Companent render')
+    console.log('Companent render');
     return (
         <div className={'app-wrapper'}>
             <HeaderContainer/>

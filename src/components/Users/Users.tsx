@@ -14,6 +14,8 @@ type UsersProps = {
     users: UsersType[]
     follow: (userID: number) => void
     unfollow: (userID: number) => void
+    followingInProgress: number[]
+    toggleIsFollowingProgress: (isFollowed: boolean, userId: number) => void
 }
 
 export let Users = (props: UsersProps) => {
@@ -43,7 +45,8 @@ export let Users = (props: UsersProps) => {
                     </div>
                     <div>
  {u.followed
-     ? <button onClick={() => {
+     ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+         props.toggleIsFollowingProgress(true, u.id)
          axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
              {
                  withCredentials: true,
@@ -55,10 +58,12 @@ export let Users = (props: UsersProps) => {
                  if (response.data.resultCode === 0) {
                      props.unfollow(u.id)
                  }
+                 props.toggleIsFollowingProgress(false, u.id)
              })
      }}>Unfollow</button>
 
-     : <button onClick={() => {
+     : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+         props.toggleIsFollowingProgress(true, u.id)
          axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
              {}, {
                  withCredentials: true,
@@ -70,6 +75,7 @@ export let Users = (props: UsersProps) => {
                  if (response.data.resultCode === 0) {
                      props.follow(u.id)
                  }
+                 props.toggleIsFollowingProgress(false, u.id)
              })
 
      }}>Follow</button>

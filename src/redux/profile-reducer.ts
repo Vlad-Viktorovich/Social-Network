@@ -1,4 +1,6 @@
 import {ActionTypes} from './store';
+import {profileApi} from '../api/api';
+import {Dispatch} from 'redux';
 
 export type ProfilePageType = {
     posts: Array<PostsType>
@@ -57,6 +59,12 @@ const changeNewTextAC = (newText: string) => {
         type: 'CHANGE_NEW_TEXT',
         newText: newText
     } as const
+}
+
+export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
+    profileApi.getProfile(userId).then(response => {
+        dispatch(setUserProfile(response.data))
+    })
 }
 
 export const profileReducer = (state = initialState, action: ActionTypes): ProfilePageType => {

@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
-import {Header} from './components/Header/Header';
 import {Nav} from './components/Nav/Nav';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
@@ -10,24 +9,27 @@ import HeaderContainer from './components/Header/HeaderContainer';
 
 
 const App = () => {
-
-    console.log('Companent render');
     return (
         <div className={'app-wrapper'}>
             <HeaderContainer/>
             <Nav/>
             <div className={'app-wrapper-content'}>
-                <Switch>
-                    <Route exect path="/dialogs" render={() =>
+                <Routes>
+                    <Route path="/dialogs" element={
                         <DialogsContainer/>
                     }/>
-                    <Route path="/profile/:userId?" render={() =>
+                    <Route path="/profile" element={
                         <ProfileContainer/>}
-                    />
-                    <Route path="/users" render={() =>
+                    >
+                        <Route path=":userId" element={
+                            <ProfileContainer/>}
+                        />
+                    </Route>
+
+                    <Route path="/users" element={
                         <UsersContainer/>}
                     />
-                </Switch>
+                </Routes>
             </div>
         </div>
     );

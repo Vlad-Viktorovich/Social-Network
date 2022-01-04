@@ -1,46 +1,59 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Profile} from './Profile';
-import axios from 'axios';
-import {connect} from 'react-redux';
-import {ProfileResponsePropsType, getUserProfile} from '../../redux/profile-reducer';
+import {connect, useDispatch} from 'react-redux';
+import {getUserProfile, ProfileResponsePropsType} from '../../redux/profile-reducer';
 import {RootStoreType} from '../../redux/redux-store';
-import {RouteComponentProps, withRouter} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
+
 
 export type ProfileContainerPropsType = MapStatePropsType & MapDispatchPropsType
-type MathType={
-    userId:string
-}
-type MapStatePropsType ={
+
+type MapStatePropsType = {
     profile: ProfileResponsePropsType
 }
-type MapDispatchPropsType ={
+type MapDispatchPropsType = {
     getUserProfile: (userId: string) => void
 }
-type PropsType = RouteComponentProps<MathType> & ProfileContainerPropsType
+type PropsType = ProfileContainerPropsType
 
 
-class ProfileContainer extends React.Component<PropsType> {
+// class ProfileContainer extends React.Component<PropsType> {
+//
+//     componentDidMount() {
+//       let {userId} = useParams()
+//         if (!userId) {
+//             userId = "2"
+//         }
+//         this.props.getUserProfile(userId)
+//     }
+//
+//     render() {
+//         return (
+//             <Profile {...this.props} profile={this.props.profile}/>
+//         )
+//
+//     }
+// }
 
-    componentDidMount() {
-        let userId = this.props.match.params.userId
+const ProfileContainer = (props: PropsType) => {
+    const {profile, getUserProfile} = props
+    let {userId} = useParams()
+    useEffect(() => {
         if (!userId) {
-            userId = "2"
+            userId = '2'
         }
-        this.props.getUserProfile(userId)
-    }
+        getUserProfile(userId)
+    }, [])
 
-    render() {
-        return (
-            <Profile {...this.props} profile={this.props.profile}/>
-        )
+    return (
+        <Profile {...props} profile={profile}/>
+    )
 
-    }
+
 }
 
-let mapStateToProps = (state: RootStoreType):MapStatePropsType => ({
+let mapStateToProps = (state: RootStoreType): MapStatePropsType => ({
     profile: state.profilePage.profile
 })
 
-let withUrlDataContainerComponent = withRouter(ProfileContainer)
-
-export default connect(mapStateToProps, {getUserProfile})(withUrlDataContainerComponent);
+export default connect(mapStateToProps, {getUserProfile})(ProfileContainer);

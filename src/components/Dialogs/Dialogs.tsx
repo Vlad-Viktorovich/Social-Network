@@ -8,8 +8,7 @@ type DialogsPropsType = {
     dialogsPage: DialogsPageType
     updateNewMessageBody:(body:string)=>void
     sendMessage:()=>void
-
-
+    isAuth: boolean
 }
 
 export const Dialogs = (props: DialogsPropsType) => {

@@ -17,25 +17,6 @@ type MapDispatchPropsType = {
 }
 type PropsType = ProfileContainerPropsType
 
-
-// class ProfileContainer extends React.Component<PropsType> {
-//
-//     componentDidMount() {
-//       let {userId} = useParams()
-//         if (!userId) {
-//             userId = "2"
-//         }
-//         this.props.getUserProfile(userId)
-//     }
-//
-//     render() {
-//         return (
-//             <Profile {...this.props} profile={this.props.profile}/>
-//         )
-//
-//     }
-// }
-
 const ProfileContainer = (props: PropsType) => {
     const {profile, getUserProfile} = props
     let {userId} = useParams()

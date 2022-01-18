@@ -11,7 +11,7 @@ import {compose} from 'redux';
 export type ProfileContainerPropsType = MapStatePropsType & MapDispatchPropsType
 
 type MapStatePropsType = {
-    profile: ProfileResponsePropsType
+    profile: ProfileResponsePropsType | null
 }
 type MapDispatchPropsType = {
     getUserProfile: (userId: string) => void

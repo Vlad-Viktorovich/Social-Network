@@ -1,8 +1,14 @@
 import React from 'react';
 import classes from './ProfileInfo.module.css';
 import {Preloader} from '../../common/Preloader/Preloader';
+import {ProfileStatus} from './ProfileStatus';
+import {ProfileResponsePropsType} from '../../../redux/profile-reducer';
 
-export const ProfileInfo = (props:any) => {
+type ProfileInfoPropsType = {
+    profile: ProfileResponsePropsType | null
+}
+
+export const ProfileInfo = (props:ProfileInfoPropsType) => {
     if(!props.profile) {
         return <Preloader/>
     }
@@ -13,7 +19,7 @@ export const ProfileInfo = (props:any) => {
             </div>
             <div className={classes.descriptonBlock}>
                 <img src={props.profile.photos.large}/>
-                ava+description
+                <ProfileStatus status={props.profile.aboutMe}/>
             </div>
         </div>
     )

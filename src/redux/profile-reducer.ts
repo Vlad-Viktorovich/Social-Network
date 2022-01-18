@@ -5,7 +5,7 @@ import {Dispatch} from 'redux';
 export type ProfilePageType = {
     posts: Array<PostsType>
     messageForNewPost: string
-    profile: any
+    profile: ProfileResponsePropsType | null
 }
 export type PostsType = {
     message: string
@@ -14,22 +14,43 @@ export type PostsType = {
 }
 
 export type ProfileResponsePropsType = {
-    userId?: number
-    lookingForAJob?: boolean
-    lookingForAJobDescription?: string
-    fullName?:string
-    contacts?:object
-    github?: string
-    vk?: string
-    facebook?: string
-    instagram?: string
-    twitter?: string
-    website?: string
-    youtube?: string
-    mainLink?: string
-    photos?: photosType
-
+    aboutMe: string
+    contacts: {
+        facebook: string | null
+        website: string | null
+        vk: string | null
+        twitter: string | null
+        instagram: string | null
+        youtube: string | null
+        github: string | null
+        mainLink: string | null
+    },
+    lookingForAJob: boolean
+    lookingForAJobDescription: string | null
+    fullName: string,
+    userId: number,
+    photos: {
+        small: string
+        large: string
+    }
 }
+    // aboutMe: string
+    // userId?: number
+    // lookingForAJob?: boolean
+    // lookingForAJobDescription?: string
+    // fullName?:string
+    // contacts?:object
+    // github?: string
+    // vk?: string
+    // facebook?: string
+    // instagram?: string
+    // twitter?: string
+    // website?: string
+    // youtube?: string
+    // mainLink?: string
+    // photos?: photosType
+
+
 type photosType ={
     small:string
     large:string
